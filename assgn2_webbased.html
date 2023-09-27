@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Continental University Registration</title>
+    <script>
+        // Function to calculate registration fee and tuition
+        function calculateRegistration() {
+            // Prompt for student type
+            var studentType = prompt("Student type (B/M):");
+            
+            // Prompt for residency
+            var residency = prompt("Residency (I/O):");
+            
+            // Prompt for number of credits
+            var credits = parseInt(prompt("Number of Credits Taking:"));
+            
+            // Map user input to display values
+            var studentTypeDisplay = studentType === "B" ? "Bachelors" : studentType === "M" ? "Masters" : "Invalid";
+            var residencyDisplay = residency === "I" ? "In-state" : residency === "O" ? "Out-state" : "Invalid";
+            
+            // Display user input
+            var userInput = "Student Type: " + studentTypeDisplay + "<br>";
+            userInput += "Residency: " + residencyDisplay + "<br>";
+            userInput += "Number of Credits: " + credits + "<br>";
+            
+            // Define registration fee and tuition rates
+            var registrationFee, tuitionRate;
+            
+            if (studentType === "B") {
+                if (residency === "I") {
+                    registrationFee = 200;
+                    tuitionRate = 350;
+                } else if (residency === "O") {
+                    registrationFee = 600;
+                    tuitionRate = 700;
+                } else {
+                    alert("Invalid residency.");
+                    return;
+                }
+            } else if (studentType === "M") {
+                if (residency === "I") {
+                    registrationFee = 300;
+                    tuitionRate = 450;
+                } else if (residency === "O") {
+                    registrationFee = 900;
+                    tuitionRate = 900;
+                } else {
+                    alert("Invalid residency.");
+                    return;
+                }
+            } else {
+                alert("Invalid student type.");
+                return;
+            }
+            
+            // Calculate tuition and total fee
+            var tuition = tuitionRate * credits;
+            var totalFee = registrationFee + tuition;
+            
+            // Display the results including user input
+            var result = userInput;
+            result += "Registration Fee: $" + registrationFee + "<br>";
+            result += "Tuition Rate per Credit: $" + tuitionRate + "<br>";
+            result += "Tuition: $" + tuition + "<br>";
+            result += "Total Fee: $" + totalFee + "<br>";
+            
+            document.getElementById("result").innerHTML = result;
+        }
+
+        // Call the calculateRegistration() function when the page loads
+        window.onload = calculateRegistration;
+    </script>
+</head>
+<body>
+    <div id="result"></div>
+</body>
+</html>
